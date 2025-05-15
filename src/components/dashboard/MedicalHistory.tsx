@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +28,7 @@ type Medication = {
 
 const MedicalHistory = () => {
   const [activeTab, setActiveTab] = useState('records');
+  // Initialize with empty arrays instead of mock data
   const [medicalRecords, setMedicalRecords] = useState<MedicalRecord[]>([]);
   const [medications, setMedications] = useState<Medication[]>([]);
   
@@ -48,55 +48,6 @@ const MedicalHistory = () => {
     startDate: new Date().toISOString().split('T')[0],
     prescribedBy: ''
   });
-
-  useEffect(() => {
-    // Mock data for demonstration
-    const mockRecords: MedicalRecord[] = [
-      {
-        id: '1',
-        date: '2023-10-15',
-        type: 'Annual Check-up',
-        doctor: 'Dr. Rajesh Sharma',
-        description: 'Routine annual physical examination. Blood pressure 120/80. Cholesterol levels normal.'
-      },
-      {
-        id: '2',
-        date: '2023-09-05',
-        type: 'Cardiology',
-        doctor: 'Dr. Priya Patel',
-        description: 'Echocardiogram conducted. Results show normal heart function.'
-      },
-      {
-        id: '3',
-        date: '2023-07-22',
-        type: 'Eye Examination',
-        doctor: 'Dr. Amit Singh',
-        description: 'Visual acuity 20/30 in both eyes. New prescription for reading glasses provided.'
-      }
-    ];
-
-    const mockMedications: Medication[] = [
-      {
-        id: '1',
-        name: 'Metformin',
-        dosage: '500mg',
-        frequency: 'Twice daily',
-        startDate: '2023-08-10',
-        prescribedBy: 'Dr. Rajesh Sharma'
-      },
-      {
-        id: '2',
-        name: 'Amlodipine',
-        dosage: '5mg',
-        frequency: 'Once daily in the morning',
-        startDate: '2023-09-15',
-        prescribedBy: 'Dr. Priya Patel'
-      }
-    ];
-
-    setMedicalRecords(mockRecords);
-    setMedications(mockMedications);
-  }, []);
 
   const handleSubmitRecord = (e: React.FormEvent) => {
     e.preventDefault();

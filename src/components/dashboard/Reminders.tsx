@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,6 +30,7 @@ type Appointment = {
 
 const Reminders = () => {
   const [activeTab, setActiveTab] = useState('reminders');
+  // Initialize with empty arrays instead of mock data
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   
@@ -51,47 +51,6 @@ const Reminders = () => {
     time: '09:00',
     date: new Date().toISOString().split('T')[0],
   });
-
-  useEffect(() => {
-    // Mock data for demonstration
-    const mockReminders: Reminder[] = [
-      {
-        id: '1',
-        title: 'Take Blood Pressure Medicine',
-        type: 'medication',
-        time: '08:00',
-        date: new Date().toISOString().split('T')[0],
-        recurring: true,
-        frequency: 'daily',
-        notes: 'Take with breakfast'
-      },
-      {
-        id: '2',
-        title: 'Evening Walk',
-        type: 'activity',
-        time: '17:00',
-        date: new Date().toISOString().split('T')[0],
-        recurring: true,
-        frequency: 'daily',
-        notes: 'Walk for at least 15 minutes'
-      }
-    ];
-
-    const mockAppointments: Appointment[] = [
-      {
-        id: '1',
-        title: 'General Checkup',
-        doctor: 'Dr. Rajesh Sharma',
-        facility: 'Agarwal Medical Center',
-        time: '14:30',
-        date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-        notes: 'Bring previous test reports'
-      }
-    ];
-
-    setReminders(mockReminders);
-    setAppointments(mockAppointments);
-  }, []);
 
   const handleSubmitReminder = (e: React.FormEvent) => {
     e.preventDefault();
