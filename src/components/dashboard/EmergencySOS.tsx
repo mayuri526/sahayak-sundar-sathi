@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -26,24 +25,8 @@ const EmergencySOS = () => {
   });
 
   useEffect(() => {
-    // Mock data for demonstration
-    const mockContacts: EmergencyContact[] = [
-      {
-        id: '1',
-        name: 'Priya Sharma',
-        relationship: 'Daughter',
-        phone: '+91 98765 43210',
-        isCaretaker: true
-      },
-      {
-        id: '2',
-        name: 'Dr. Vikram Agarwal',
-        relationship: 'Primary Doctor',
-        phone: '+91 87654 32109'
-      }
-    ];
-
-    setContacts(mockContacts);
+    // Initialize with empty contacts instead of mock data
+    setContacts([]);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
