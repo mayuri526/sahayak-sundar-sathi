@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bell, Calendar, FileText, MapPin } from 'lucide-react';
+import { Bell, Calendar, FileText, MapPin, User, LogOut } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
 
 type UserData = {
@@ -25,14 +25,8 @@ const Dashboard = () => {
       navigate('/login');
     }
 
-    // Get some mock data for the dashboard
-    const mockReminders = [
-      { id: 1, title: 'Take Blood Pressure Medicine', time: '8:00 AM', date: new Date().toLocaleDateString() },
-      { id: 2, title: 'Dr. Sharma Appointment', time: '2:30 PM', date: new Date().toLocaleDateString() },
-      { id: 3, title: 'Evening Walk', time: '5:00 PM', date: new Date().toLocaleDateString() },
-    ];
-    
-    setUpcomingReminders(mockReminders);
+    // Initialize with empty reminders instead of mock data
+    setUpcomingReminders([]);
   }, [navigate]);
 
   const handleAddReminder = () => {
@@ -94,7 +88,7 @@ const Dashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">3</p>
+            <p className="text-2xl font-bold">0</p>
             <p className="text-sm opacity-90">Health records</p>
           </CardContent>
           <CardFooter>
@@ -115,7 +109,7 @@ const Dashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">1</p>
+            <p className="text-2xl font-bold">0</p>
             <p className="text-sm opacity-90">Upcoming appointments</p>
           </CardContent>
           <CardFooter>
@@ -136,7 +130,7 @@ const Dashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">12</p>
+            <p className="text-2xl font-bold">0</p>
             <p className="text-sm opacity-90">Healthcare facilities nearby</p>
           </CardContent>
           <CardFooter>
@@ -158,26 +152,6 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {upcomingReminders.map(reminder => (
-                <div 
-                  key={reminder.id} 
-                  className="flex items-center justify-between p-3 bg-muted rounded-lg"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-care-blue/20 flex items-center justify-center text-care-blue">
-                      {reminder.id === 2 ? <Calendar className="h-5 w-5" /> : <Bell className="h-5 w-5" />}
-                    </div>
-                    <div>
-                      <p className="font-medium">{reminder.title}</p>
-                      <p className="text-sm text-muted-foreground">{reminder.time}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <button className="text-sm text-care-blue hover:underline">Complete</button>
-                  </div>
-                </div>
-              ))}
-
               {upcomingReminders.length === 0 && (
                 <div className="text-center py-6 text-muted-foreground">
                   No reminders for today
